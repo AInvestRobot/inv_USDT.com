@@ -159,12 +159,11 @@ registerForm.addEventListener('submit', e => {
 
       const email = loginEmail.value.trim();
       const pass  = loginPass.value;
-      if(email===localStorage.getItem('userEmail') && pass===localStorage.getItem('userPass')){
-        // location.href = 'dashboard.html';
-      }else{
-        alert('بيانات غير صحيحة');
-      }
-      window.location.href = "home.html";
+    if(email === localStorage.getItem('userEmail') && pass === localStorage.getItem('userPass')){
+  window.location.href = "home.html";
+} else {
+  alert('بيانات غير صحيحة');
+}
     });
   </script>
 </body>
