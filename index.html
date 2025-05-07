@@ -90,81 +90,79 @@
       <p class="small-text" style="margin-top:1rem">لديك حساب؟ <span id="goLogin" class="link">سجّل دخول</span></p>
     </div>
   </div>
+<script>
+  const loginTab     = document.getElementById('loginTab');
+  const registerTab  = document.getElementById('registerTab');
+  const loginCard    = document.getElementById('loginCard');
+  const registerCard = document.getElementById('registerCard');
 
-  <script>
-    /* ========== عناصر DOM ========= */
-    const loginTab     = document.getElementById('loginTab');
-    const registerTab  = document.getElementById('registerTab');
-    const loginCard    = document.getElementById('loginCard');
-    const registerCard = document.getElementById('registerCard');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const loginWarning = document.getElementById('loginWarning');
 
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const loginWarning = document.getElementById('loginWarning');
+  loginTab.onclick = () => switchScreen(true);
+  registerTab.onclick = () => switchScreen(false);
+  document.getElementById('goRegister').onclick = () => switchScreen(false);
+  document.getElementById('goLogin').onclick   = () => switchScreen(true);
 
-    /* ========== تبديل التبويبات ========= */
-    loginTab.onclick = () => switchScreen(true);
-    registerTab.onclick = () => switchScreen(false);
-    document.getElementById('goRegister').onclick = () => switchScreen(false);
-    document.getElementById('goLogin').onclick   = () => switchScreen(true);
-
-    function switchScreen(isLogin){
-      loginTab.classList.toggle('active',isLogin);
-      registerTab.classList.toggle('active',!isLogin);
-      loginCard.classList.toggle('hidden',!isLogin);
-      registerCard.classList.toggle('hidden',isLogin);
-    }
-
-    /* ========== تخزين المستخدم محلياً ========= */
-    function saveUser(email,password){
-      localStorage.setItem('userEmail',email);
-      localStorage.setItem('userPass',password);
-    }
-    function userExists(){
-      return localStorage.getItem('userEmail');
-    }
-/* ========== معالجة التسجيل ========= */
-registerForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const email = regEmail.value.trim();
-  const pass1 = regPass.value;
-  const pass2 = regPass2.value;
-
-  if (pass1 !== pass2) {
-    alert('كلمتا المرور غير متطابقتين');
-    return;
+  function switchScreen(isLogin){
+    loginTab.classList.toggle('active',isLogin);
+    registerTab.classList.toggle('active',!isLogin);
+    loginCard.classList.toggle('hidden',!isLogin);
+    registerCard.classList.toggle('hidden',isLogin);
   }
 
-  // توليد كود إحالة فريد (مثلاً: user293)
-  const referralCode = "user" + Math.floor(Math.random() * 10000);
+  function saveUser(email,password){
+    sessionStorage.setItem('userEmail',email);
+    sessionStorage.setItem('userPass',password);
+  }
+  function userExists(){
+    return sessionStorage.getItem('userEmail');
+  }
 
-  // حفظ بيانات المستخدم
-  saveUser(email, pass1);
-  localStorage.setItem('referralCode', referralCode);
+  registerForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = regEmail.value.trim();
+    const pass1 = regPass.value;
+    const pass2 = regPass2.value;
 
-  alert('تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.');
-  switchScreen(true);
-});
+    if (pass1 !== pass2) {
+      alert('كلمتا المرور غير متطابقتين');
+      return;
+    }
 
-    /* ========== معالجة تسجيل الدخول ========= */
-    loginForm.addEventListener('submit',e=>{
-      e.preventDefault();
-      loginWarning.classList.add('hidden');   // إخفاء التحذير كل محاولة
+    const referralCode = "user" + Math.floor(Math.random() * 10000);
+    saveUser(email, pass1);
+    sessionStorage.setItem('referralCode', referralCode);
 
-      if(!userExists()){
-        loginWarning.classList.remove('hidden'); // إظهار التحذير بالأحمر
-        switchScreen(false);
-        return;
-      }
+    alert('تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.');
 
-      const email = loginEmail.value.trim();
-      const pass  = loginPass.value;
-    if(email === localStorage.getItem('userEmail') && pass === localStorage.getItem('userPass')){
-  window.location.href = "home.html";
-} else {
-  alert('بيانات غير صحيحة');
-}
-    });
-  </script>
+    // ⏳ تأخير بسيط للسماح للمتصفح بالحفظ
+    setTimeout(() => {
+      switchScreen(true);
+    }, 300);
+  });
+
+  loginForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    loginWarning.classList.add('hidden');
+
+    if(!userExists()){
+      loginWarning.classList.remove('hidden');
+      switchScreen(false);
+      return;
+    }
+
+    const email = loginEmail.value.trim();
+    const pass  = loginPass.value;
+
+    if(email === sessionStorage.getItem('userEmail') && pass === sessionStorage.getItem('userPass')){
+      window.location.href = "home.html";
+    }else{
+      alert('بيانات غير صحيحة');
+    }
+  });
+</script>
+
 </body>
 </html>
