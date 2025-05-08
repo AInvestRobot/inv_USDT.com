@@ -149,17 +149,13 @@
       </tbody>
     </table>
   </main>
-
-  <script>
+ <script>
     const referral = localStorage.getItem("referralLink");
-    const registeredCount = localStorage.getItem("registeredCount") || 0;
-
     if (!referral) {
       alert("يجب تسجيل الدخول أولاً");
       window.location.href = "index.html";
     } else {
       document.getElementById("referral").innerText = referral;
-      document.getElementById("registered-count").innerText = registeredCount;
     }
 
     function copyReferral() {
@@ -169,3 +165,4 @@
   </script>
 </body>
 </html>
+
