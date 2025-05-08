@@ -2,25 +2,32 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>صفحة الإحالات</title>
+  <title>رابط الإحالة</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding-top: 50px; direction: rtl; }
+    .info { margin: 20px; }
+  </style>
 </head>
 <body>
-  <h2>رابط الإحالة الخاص بك:</h2>
-  <p id="referralLink">جاري التحميل...</p>
-
-  <h2>راتبك المميز:</h2>
-  <p id="salary">جاري التحميل...</p>
+  <h2>رابط الإحالة الخاص بك</h2>
+  <div class="info">
+    <span id="referral"></span>
+  </div>
+  <button onclick="copyReferral()">نسخ الرابط</button>
+  <p id="copied" style="color: green;"></p>
 
   <script>
-    const link = localStorage.getItem("referral_link");
-    const salary = localStorage.getItem("salary");
-
-    if (link && salary) {
-      document.getElementById("referralLink").innerText = link;
-      document.getElementById("salary").innerText = salary + " دولار";
+    const referral = localStorage.getItem("referralLink");
+    if (!referral) {
+      alert("يجب تسجيل الدخول أولاً");
+      window.location.href = "index.html";
     } else {
-      document.getElementById("referralLink").innerText = "لم يتم تسجيل الدخول";
-      document.getElementById("salary").innerText = "غير متوفر";
+      document.getElementById("referral").innerText = referral;
+    }
+
+    function copyReferral() {
+      navigator.clipboard.writeText(referral);
+      document.getElementById("copied").innerText = "تم النسخ!";
     }
   </script>
 </body>
