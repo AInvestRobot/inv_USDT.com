@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>رابط الإحالة</title>
-</head>
-<body style="text-align:center; padding:40px; font-family:Tajawal,sans-serif;">
-  <h2>رابط الإحالة الخاص بك:</h2>
-  <input type="text" id="refLink" style="width:100%; padding:10px; font-size:18px;" readonly>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة الإحالات</title>
   <script>
-    const referralCode = localStorage.getItem('referralCode');
-    if (referralCode) {
-      const fullLink = `https://azuoo.github.io/inv_USDT.com//index.html?ref=${referralCode}`;
-      document.getElementById("refLink").value = fullLink;
-    } else {
-      document.getElementById("refLink").value = "لم يتم إنشاء رابط إحالة بعد.";
-    }
+    window.onload = function() {
+      const userEmail = localStorage.getItem("userEmail");
+
+      if (userEmail) {
+        // جلب بيانات الإحالة من Google Sheets عبر API
+        fetch(`https://script.google.com/macros/s/AKfycbz6BQQwtKnINDRvGJvHOoMeCrBiSs8pksn-e4n-Re8l6ILzgbG-XGF-OaamTSuP82jf/exec?email=${userEmail}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.referralCode) {
+              document.getElementById("referral-link").textContent = `رابط إحالتك: https://example.com/signup?ref=${data.referralCode}`;
+              document.getElementById("salary").textContent = `راتبك المميز: ${data.salary}`;
+            } else {
+              document.getElementById("message").textContent = "لم يتم العثور على بياناتك.";
+            }
+          })
+          .catch(error => {
+            console.error("Error fetching referral data:", error);
+          });
+      } else {
+        document.getElementById("message").textContent = "لم تقم بتسجيل الدخول بعد.";
+      }
+    };
   </script>
+</head>
+<body>
+  <h1>صفحة الإحالات</h1>
+  <p id="message">جاري التحميل...</p>
+  <p id="referral-link"></p>
+  <p id="salary"></p>
 </body>
 </html>
