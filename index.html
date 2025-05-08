@@ -91,70 +91,26 @@
     </div>
   </div>
 <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycby99gMZJ1yHM5LjbmlpPjMQqaouhBGoepkyVD6PnyRN6vANMbSaylaBU09EuEpS9O4/exec";
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  const loginTab     = document.getElementById('loginTab');
-  const registerTab  = document.getElementById('registerTab');
-  const loginCard    = document.getElementById('loginCard');
-  const registerCard = document.getElementById('registerCard');
-
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const loginWarning = document.getElementById('loginWarning');
-
-  loginTab.onclick = () => switchScreen(true);
-  registerTab.onclick = () => switchScreen(false);
-  document.getElementById('goRegister').onclick = () => switchScreen(false);
-  document.getElementById('goLogin').onclick   = () => switchScreen(true);
-
-  function switchScreen(isLogin){
-    loginTab.classList.toggle('active',isLogin);
-    registerTab.classList.toggle('active',!isLogin);
-    loginCard.classList.toggle('hidden',!isLogin);
-    registerCard.classList.toggle('hidden',isLogin);
-  }
-
-  registerForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = regEmail.value.trim();
-    const pass1 = regPass.value;
-    const pass2 = regPass2.value;
-
-    if (pass1 !== pass2) {
-      alert('كلمتا المرور غير متطابقتين');
-      return;
-    }
-
-    fetch(`${scriptURL}?type=register&email=${email}&password=${pass1}`)
-      .then(res => res.text())
-      .then(result => {
-        if (result === "SUCCESS") {
-          alert('تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.');
-          setTimeout(() => switchScreen(true), 300);
-        } else if (result === "EXISTS") {
-          alert('هذا البريد الإلكتروني مسجل مسبقاً.');
-        } else {
-          alert('حدث خطأ أثناء التسجيل');
-        }
-      });
-  });
-
-  loginForm.addEventListener('submit', e => {
-    e.preventDefault();
-    loginWarning.classList.add('hidden');
-    const email = loginEmail.value.trim();
-    const pass = loginPass.value;
-
-    fetch(`${scriptURL}?type=login&email=${email}&password=${pass}`)
-      .then(res => res.text())
-      .then(result => {
-        if (result === "SUCCESS") {
-          window.location.href = "home.html";
-        } else {
-          alert('بيانات غير صحيحة أو غير مسجلة.');
-        }
-      });
-  });
+  fetch(`https://script.google.com/macros/s/AKfycby99gMZJ1yHM5LjbmlpPjMQqaouhBGoepkyVD6PnyRN6vANMbSaylaBU09EuEpS9O4/exec?action=getUser&email=${email}&password=${password}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        localStorage.setItem("referral_link", data.referral_link);
+        localStorage.setItem("salary", data.salary);
+        window.location.href = "referrals.html";
+      } else {
+        alert("بيانات خاطئة، تأكد من البريد وكلمة المرور");
+      }
+    })
+    .catch(error => {
+      console.error("حدث خطأ:", error);
+      alert("فشل الاتصال بالخادم");
+    });
+}
 </script>
 </body>
 </html>
