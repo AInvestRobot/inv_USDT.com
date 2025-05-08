@@ -91,6 +91,8 @@
     </div>
   </div>
 <script>
+  const scriptURL = "ضع هنا رابط Google Apps Script";
+
   const loginTab     = document.getElementById('loginTab');
   const registerTab  = document.getElementById('registerTab');
   const loginCard    = document.getElementById('loginCard');
@@ -112,14 +114,6 @@
     registerCard.classList.toggle('hidden',isLogin);
   }
 
-  function saveUser(email,password){
-    sessionStorage.setItem('userEmail',email);
-    sessionStorage.setItem('userPass',password);
-  }
-  function userExists(){
-    return sessionStorage.getItem('userEmail');
-  }
-
   registerForm.addEventListener('submit', e => {
     e.preventDefault();
     const email = regEmail.value.trim();
@@ -131,36 +125,35 @@
       return;
     }
 
-    const referralCode = "user" + Math.floor(Math.random() * 10000);
-    saveUser(email, pass1);
-    sessionStorage.setItem('referralCode', referralCode);
-
-    alert('تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.');
-
-    // ⏳ تأخير بسيط للسماح للمتصفح بالحفظ
-    setTimeout(() => {
-      switchScreen(true);
-    }, 300);
+    fetch(`${scriptURL}?type=register&email=${email}&password=${pass1}`)
+      .then(res => res.text())
+      .then(result => {
+        if (result === "SUCCESS") {
+          alert('تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.');
+          setTimeout(() => switchScreen(true), 300);
+        } else if (result === "EXISTS") {
+          alert('هذا البريد الإلكتروني مسجل مسبقاً.');
+        } else {
+          alert('حدث خطأ أثناء التسجيل');
+        }
+      });
   });
 
-  loginForm.addEventListener('submit',e=>{
+  loginForm.addEventListener('submit', e => {
     e.preventDefault();
     loginWarning.classList.add('hidden');
-
-    if(!userExists()){
-      loginWarning.classList.remove('hidden');
-      switchScreen(false);
-      return;
-    }
-
     const email = loginEmail.value.trim();
-    const pass  = loginPass.value;
+    const pass = loginPass.value;
 
-    if(email === sessionStorage.getItem('userEmail') && pass === sessionStorage.getItem('userPass')){
-      window.location.href = "home.html";
-    }else{
-      alert('بيانات غير صحيحة');
-    }
+    fetch(`${scriptURL}?type=login&email=${email}&password=${pass}`)
+      .then(res => res.text())
+      .then(result => {
+        if (result === "SUCCESS") {
+          window.location.href = "home.html";
+        } else {
+          alert('بيانات غير صحيحة أو غير مسجلة.');
+        }
+      });
   });
 </script>
 </body>
