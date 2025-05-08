@@ -10,46 +10,96 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            direction: rtl;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         .plan-card {
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            padding: 30px 20px 20px;
+            margin-bottom: 30px;
+            position: relative;
             text-align: center;
+            overflow: hidden;
         }
+
+        /* شكل القفل */
+        .lock-top {
+            width: 60px;
+            height: 60px;
+            background-color: #ffc107;
+            border: 5px solid #333;
+            border-radius: 50%;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         .plan-card h3 {
             color: #333;
+            margin-top: 40px;
         }
+
         .plan-card p {
             color: #555;
+            font-size: 16px;
         }
+
         .deposit-button {
             background-color: #28a745;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
         }
+
         .deposit-button:hover {
             background-color: #218838;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        footer button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 style="text-align: center; margin-bottom: 40px;">باقات استثمار USDT</h1>
+        <h1>باقات استثمار USDT</h1>
 
-        <!-- باقة استثمار 1 -->
+        <!-- تكرار القفل والباقات -->
         <div class="plan-card">
+            <div class="lock-top"></div>
             <h3>باقة استثمار 1</h3>
             <p>العائد اليومي: 55%</p>
             <p>مدة الاستثمار: 30 يومًا</p>
@@ -57,8 +107,8 @@
             <button class="deposit-button" onclick="window.location.href='deposit.html?plan=1'">إيداع الآن</button>
         </div>
 
-        <!-- باقة استثمار 2 -->
         <div class="plan-card">
+            <div class="lock-top"></div>
             <h3>باقة استثمار 2</h3>
             <p>العائد اليومي: 55%</p>
             <p>مدة الاستثمار: 60 يومًا</p>
@@ -66,61 +116,20 @@
             <button class="deposit-button" onclick="window.location.href='deposit.html?plan=2'">إيداع الآن</button>
         </div>
 
-        <!-- باقة استثمار 3 -->
-        <div class="plan-card">
-            <h3>باقة استثمار 3</h3>
-            <p>العائد اليومي: 55%</p>
-            <p>مدة الاستثمار: 90 يومًا</p>
-            <p>لإيداع: 20 دولار</p>
-            <button class="deposit-button" onclick="window.location.href='deposit.html?plan=3'">إيداع الآن</button>
-        </div>
+        <!-- يمكنك نسخ هذا القسم لبقية الباقات مع تغيير النص -->
+        <!-- ... بقية الباقات ... -->
 
-        <!-- باقة استثمار 4 -->
         <div class="plan-card">
-            <h3>باقة استثمار 4</h3>
-            <p>العائد اليومي: 55%</p>
-            <p>مدة الاستثمار: 30 يومًا</p>
-            <p>لإيداع: 50 دولار</p>
-            <button class="deposit-button" onclick="window.location.href='deposit.html?plan=4'">إيداع الآن</button>
-        </div>
-
-        <!-- باقة استثمار 5 -->
-        <div class="plan-card">
-            <h3>باقة استثمار 5</h3>
-            <p>العائد اليومي: 55%</p>
-            <p>مدة الاستثمار: 60 يومًا</p>
-            <p>لإيداع: 100 دولار</p>
-            <button class="deposit-button" onclick="window.location.href='deposit.html?plan=5'">إيداع الآن</button>
-        </div>
-
-        <!-- باقة استثمار 6 -->
-        <div class="plan-card">
-            <h3>باقة استثمار 6</h3>
-            <p>العائد اليومي: 55%</p>
-            <p>مدة الاستثمار: 90 يومًا</p>
-            <p>لإيداع: 150 دولار</p>
-            <button class="deposit-button" onclick="window.location.href='deposit.html?plan=6'">إيداع الآن</button>
-        </div>
-
-        <!-- باقة استثمار 7 -->
-        <div class="plan-card">
-            <h3>باقة استثمار 7</h3>
-            <p>العائد اليومي: 55%</p>
-            <p>مدة الاستثمار: 30 يومًا</p>
-            <p>لإيداع: 300 دولار</p>
-            <button class="deposit-button" onclick="window.location.href='deposit.html?plan=7'">إيداع الآن</button>
-        </div>
-
-        <!-- باقة استثمار 8 -->
-        <div class="plan-card">
+            <div class="lock-top"></div>
             <h3>باقة استثمار 8</h3>
             <p>العائد اليومي: 55%</p>
             <p>مدة الاستثمار: 60 يومًا</p>
-            <p> لإيداع: 500 دولار</p>
+            <p>لإيداع: 500 دولار</p>
             <button class="deposit-button" onclick="window.location.href='deposit.html?plan=8'">إيداع الآن</button>
         </div>
+
         <footer>
-            <button onclick="window.location.href='hhh.html'">🔙 العودة</button>
+            <button onclick="window.location.href='home.html'">🔙 العودة</button>
         </footer>
     </div>
 </body>
