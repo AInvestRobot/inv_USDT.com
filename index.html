@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل / دخول</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding-top: 50px; direction: rtl; }
+    input, button { margin: 10px; padding: 10px; width: 250px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
 
+  <h2 id="title">مرحباً بك</h2>
+  <button onclick="showRegister()">تسجيل</button>
+  <button onclick="showLogin()">تسجيل دخول</button>
+
+  <div id="formArea" class="hidden">
+    <input type="email" id="email" placeholder="البريد الإلكتروني" required><br>
+    <input type="password" id="password" placeholder="كلمة المرور" required><br>
+    <button id="actionBtn" onclick="">...</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwOzOHq-cviCaUBYb-Wgp_n5ENpNZX3UXgapGJDGdc_sFOClDGp6mlJaBvpm9n4HcXI3A/exec";
+
+    function showRegister() {
+      document.getElementById("formArea").classList.remove("hidden");
+      document.getElementById("title").innerText = "تسجيل حساب جديد";
+      document.getElementById("actionBtn").innerText = "تسجيل";
+      document.getElementById("actionBtn").onclick = register;
+    }
+
+    function showLogin() {
+      document.getElementById("formArea").classList.remove("hidden");
+      document.getElementById("title").innerText = "تسجيل الدخول";
+      document.getElementById("actionBtn").innerText = "دخول";
+      document.getElementById("actionBtn").onclick = login;
+    }
+
+    function register() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      fetch(`${scriptURL}?action=registerUser&email=${email}&password=${password}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById("message").innerText = "تم التسجيل! يتم نقلك...";
+            setTimeout(() => showLogin(), 1500);
+          } else if (data.reason === "duplicate") {
+            document.getElementById("message").innerText = "البريد مسجل مسبقاً.";
+          } else {
+            document.getElementById("message").innerText = "خطأ، حاول مجددًا.";
+          }
+        });
+    }
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      fetch(`${scriptURL}?action=getUser&email=${email}&password=${password}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("referralLink", data.referral_link);
+            localStorage.setItem("salary", data.salary);
+            window.location.href = "home.html"; // بعد الدخول ينتقل لصفحة العروض
+          } else {
+            document.getElementById("message").innerText = "البيانات غير صحيحة.";
+          }
+        });
+    }
+  </script>
+</body>
+</html>
