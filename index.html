@@ -4,22 +4,133 @@
   <meta charset="UTF-8">
   <title>تسجيل / دخول</title>
   <style>
-    body { font-family: Arial; text-align: center; padding-top: 50px; direction: rtl; }
-    input, button { margin: 10px; padding: 10px; width: 250px; }
-    .hidden { display: none; }
+    /* ---------- الأساسيات ---------- */
+    body {
+      font-family: "Tajawal", sans-serif;
+      background: linear-gradient(135deg, #6e7f8f, #2e3d47);
+      color: #fff;
+      padding: 50px 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+    }
+
+    button {
+      margin: 10px 0;
+      padding: 12px 20px;
+      width: 100%;
+      font-size: 1rem;
+      background: linear-gradient(90deg, #8c76e6, #68d5b2);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      text-align: right;
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #ff4757;
+    }
+
+    /* ---------- رابط لوجو في الأعلى ---------- */
+    .logo {
+      width: 100px;
+      margin-bottom: 30px;
+    }
+
+    /* ---------- التنقل بين التسجيل والدخول ---------- */
+    .tabs {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tab {
+      margin: 0 15px;
+      font-size: 1.2rem;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .tab:hover {
+      color: #68d5b2;
+    }
+
+    .active-tab {
+      color: #68d5b2;
+      font-weight: bold;
+    }
+
   </style>
 </head>
 <body>
+  <div class="container">
+    <!-- إضافة اللوجو -->
+    <img src="logo-png.jpg" alt="Logo" class="logo">
 
-  <h2 id="title">مرحباً بك</h2>
-  <button onclick="showRegister()">تسجيل</button>
-  <button onclick="showLogin()">تسجيل دخول</button>
+    <!-- العنوان -->
+    <h2 id="title">مرحباً بك</h2>
 
-  <div id="formArea" class="hidden">
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required><br>
-    <input type="password" id="password" placeholder="كلمة المرور" required><br>
-    <button id="actionBtn" onclick="">...</button>
-    <p id="message"></p>
+    <!-- التبديل بين الدخول والتسجيل -->
+    <div class="tabs">
+      <div id="loginTab" class="tab active-tab" onclick="showLogin()">تسجيل دخول</div>
+      <div id="registerTab" class="tab" onclick="showRegister()">تسجيل حساب</div>
+    </div>
+
+    <!-- استمارة الدخول والتسجيل -->
+    <div id="formArea" class="hidden">
+      <input type="email" id="email" placeholder="البريد الإلكتروني" required><br>
+      <input type="password" id="password" placeholder="كلمة المرور" required><br>
+      <button id="actionBtn" onclick="">...</button>
+      <p id="message" class="message"></p>
+    </div>
   </div>
 
   <script>
@@ -30,6 +141,9 @@
       document.getElementById("title").innerText = "تسجيل حساب جديد";
       document.getElementById("actionBtn").innerText = "تسجيل";
       document.getElementById("actionBtn").onclick = register;
+
+      document.getElementById("loginTab").classList.remove("active-tab");
+      document.getElementById("registerTab").classList.add("active-tab");
     }
 
     function showLogin() {
@@ -37,6 +151,9 @@
       document.getElementById("title").innerText = "تسجيل الدخول";
       document.getElementById("actionBtn").innerText = "دخول";
       document.getElementById("actionBtn").onclick = login;
+
+      document.getElementById("registerTab").classList.remove("active-tab");
+      document.getElementById("loginTab").classList.add("active-tab");
     }
 
     function register() {
@@ -47,12 +164,12 @@
         .then(res => res.json())
         .then(data => {
           if (data.success) {
-            document.getElementById("message").innerText = "تم التسجيل! يتم نقلك...";
+            document.getElementById("message").innerText = "تم التسجيل بنجاح!";
             setTimeout(() => showLogin(), 1500);
           } else if (data.reason === "duplicate") {
-            document.getElementById("message").innerText = "البريد مسجل مسبقاً.";
+            document.getElementById("message").innerText = "البريد الإلكتروني مسجل مسبقاً.";
           } else {
-            document.getElementById("message").innerText = "خطأ، حاول مجددًا.";
+            document.getElementById("message").innerText = "حدث خطأ، حاول مجددًا.";
           }
         });
     }
