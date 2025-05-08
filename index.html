@@ -6,13 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Invest Robot – دخول / تسجيل</title>
   <style>
-      .logo {
-    width: 20px;
-    height: 20px;
-    border-radius: 45%;
-    object-fit: cover; /* عشان ما تتشوه الصورة */
-  }
-    /* ---------- أساسيات التصميم ---------- */
     :root {
       --bg-start: #1e0d47;
       --bg-end: #100622;
@@ -25,129 +18,218 @@
       --btn-end: #9affdd;
       --radius: 14px;
     }
-    *{box-sizing:border-box;font-family:"Tajawal",sans-serif}
-    body{
-      margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-      background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.05) 0 120px,transparent 200px),
-                radial-gradient(circle at 90% 70%,rgba(255,255,255,0.05) 0 150px,transparent 260px),
-                linear-gradient(180deg,var(--bg-start),var(--bg-end));
-      color:var(--text-main);
+    * {
+      box-sizing: border-box;
+      font-family: "Tajawal", sans-serif;
     }
-    /* ---------- حاوية رئيسية ---------- */
-    .container{width:100%;max-width:480px;padding:2rem 1rem 4rem;text-align:center}
-    .logo{width:100px;margin:0 auto 0.5rem}
-    h1{margin:0 0 2rem;font-size:1.6rem;font-weight:600}
-    .card{background:var(--card-bg);border:1px solid var(--card-border);backdrop-filter:blur(10px);border-radius:var(--radius);padding:2rem 1.2rem}
-    /* ---------- عناصر مشتركة ---------- */
-    input{width:100%;padding:0.95rem 1rem;border:none;border-radius:var(--radius);background:var(--input-bg);color:var(--text-main);font-size:0.9rem;outline:none}
-    input::placeholder{color:var(--text-muted)}
-    .btn{border:none;cursor:pointer;padding:0.95rem 1rem;font-size:1rem;font-weight:600;border-radius:var(--radius);background:linear-gradient(to left,var(--btn-start),var(--btn-end));color:#000;transition:transform .2s}
-    .btn:active{transform:scale(.97)}
-    .link{color:var(--btn-end);cursor:pointer;text-decoration:none}
-    .small-text{font-size:.85rem;color:var(--text-muted)}
-    .hidden{display:none}
-    /* ---------- تبويبات ---------- */
-    .tabs{display:flex;margin-bottom:1.8rem}
-    .tab{flex:1;padding:.9rem 0;cursor:pointer;font-size:.9rem;color:var(--text-muted);position:relative;transition:color .3s}
-    .tab.active{color:var(--text-main)}
-    .tab.active::after{content:"";position:absolute;bottom:0;left:10%;width:80%;height:2px;background:var(--btn-end);border-radius:2px}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.05) 0 120px, transparent 200px),
+                  radial-gradient(circle at 90% 70%, rgba(255,255,255,0.05) 0 150px, transparent 260px),
+                  linear-gradient(180deg, var(--bg-start), var(--bg-end));
+      color: var(--text-main);
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem 1rem 4rem;
+      text-align: center;
+    }
+    .logo {
+      width: 100px;
+      margin: 0 auto 0.5rem;
+      border-radius: 45%;
+      object-fit: cover;
+    }
+    h1 {
+      margin: 0 0 2rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 2rem 1.2rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      margin-top: 1.1rem;
+    }
+    input::placeholder {
+      color: var(--text-muted);
+    }
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 0.95rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      background: linear-gradient(to left, var(--btn-start), var(--btn-end));
+      color: #000;
+      transition: transform 0.2s;
+      margin-top: 1.4rem;
+      width: 100%;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .link {
+      color: var(--btn-end);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .small-text {
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+    .hidden {
+      display: none;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 1.8rem;
+    }
+    .tab {
+      flex: 1;
+      padding: .9rem 0;
+      cursor: pointer;
+      font-size: .9rem;
+      color: var(--text-muted);
+      position: relative;
+      transition: color .3s;
+    }
+    .tab.active {
+      color: var(--text-main);
+    }
+    .tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: var(--btn-end);
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="logo.png.jpg" alt="AI Invest Robot Logo" class="logo" style="width: 200px; height: auto;">
     <h1>AI Invest Robot</h1>
-    <!-- Tabs بين تسجيل الدخول والتسجيل -->
+
     <div class="tabs">
       <div id="loginTab" class="tab active">تسجيل الدخول</div>
       <div id="registerTab" class="tab">إنشاء حساب</div>
     </div>
 
-    <!-- =========== بطاقة تسجيل الدخول =========== -->
     <div id="loginCard" class="card">
       <form id="loginForm" autocomplete="off">
         <input id="loginEmail" type="email" placeholder="البريد الإلكتروني" required>
-        <input id="loginPass"  type="password" placeholder="كلمة المرور" required style="margin-top:1.1rem">
-        <button class="btn" style="margin-top:1.4rem;width:100%">دخول</button>
+        <input id="loginPass" type="password" placeholder="كلمة المرور" required>
+        <button type="submit" class="btn">دخول</button>
       </form>
-
-      <!-- التحذير بالأحمر إذا حاول المستخدم الدخول دون تسجيل -->
-      <p id="loginWarning" class="small-text hidden" style="color:#ff4d4f;margin-top:0.8rem">
-        يجب أن تسجل في الموقع أولاً
-      </p>
-
+      <p id="loginWarning" class="small-text hidden" style="color:#ff4d4f;margin-top:0.8rem">يجب أن تسجل في الموقع أولاً</p>
       <p class="small-text" style="margin-top:1rem">لا يوجد حساب؟ <span id="goRegister" class="link">أنشئ حساب</span></p>
     </div>
 
-    <!-- =========== بطاقة التسجيل =========== -->
     <div id="registerCard" class="card hidden">
       <form id="registerForm" autocomplete="off">
         <input id="regEmail" type="email" placeholder="البريد الإلكتروني" required>
-        <input id="regPass"  type="password" placeholder="كلمة المرور" required style="margin-top:1.1rem">
-        <input id="regPass2" type="password" placeholder="تأكيد كلمة المرور" required style="margin-top:1.1rem">
-        <button class="btn" style="margin-top:1.4rem;width:100%">تسجيل</button>
+        <input id="regPass" type="password" placeholder="كلمة المرور" required>
+        <input id="regPass2" type="password" placeholder="تأكيد كلمة المرور" required>
+        <button type="submit" class="btn">تسجيل</button>
       </form>
       <p class="small-text" style="margin-top:1rem">لديك حساب؟ <span id="goLogin" class="link">سجّل دخول</span></p>
     </div>
+
+    <p id="message" class="small-text" style="margin-top:1rem;"></p>
   </div>
-<script>
+
+  <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbwOzOHq-cviCaUBYb-Wgp_n5ENpNZX3UXgapGJDGdc_sFOClDGp6mlJaBvpm9n4HcXI3A/exec";
 
-    function showRegister() {
-      document.getElementById("formArea").classList.remove("hidden");
-      document.getElementById("title").innerText = "تسجيل حساب جديد";
-      document.getElementById("actionBtn").innerText = "تسجيل";
-      document.getElementById("actionBtn").onclick = register;
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginCard = document.getElementById("loginCard");
+    const registerCard = document.getElementById("registerCard");
+    const goRegister = document.getElementById("goRegister");
+    const goLogin = document.getElementById("goLogin");
 
-      document.getElementById("loginTab").classList.remove("active-tab");
-      document.getElementById("registerTab").classList.add("active-tab");
-    }
+    loginTab.onclick = () => {
+      loginTab.classList.add("active");
+      registerTab.classList.remove("active");
+      loginCard.classList.remove("hidden");
+      registerCard.classList.add("hidden");
+    };
 
-    function showLogin() {
-      document.getElementById("formArea").classList.remove("hidden");
-      document.getElementById("title").innerText = "تسجيل الدخول";
-      document.getElementById("actionBtn").innerText = "دخول";
-      document.getElementById("actionBtn").onclick = login;
+    registerTab.onclick = () => {
+      registerTab.classList.add("active");
+      loginTab.classList.remove("active");
+      registerCard.classList.remove("hidden");
+      loginCard.classList.add("hidden");
+    };
 
-      document.getElementById("registerTab").classList.remove("active-tab");
-      document.getElementById("loginTab").classList.add("active-tab");
-    }
+    goRegister.onclick = () => registerTab.click();
+    goLogin.onclick = () => loginTab.click();
 
-    function register() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("regEmail").value.trim();
+      const pass = document.getElementById("regPass").value.trim();
+      const pass2 = document.getElementById("regPass2").value.trim();
 
-      fetch(`${scriptURL}?action=registerUser&email=${email}&password=${password}`)
+      if (pass !== pass2) {
+        document.getElementById("message").innerText = "كلمتا المرور غير متطابقتين.";
+        return;
+      }
+
+      fetch(`${scriptURL}?action=registerUser&email=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`)
         .then(res => res.json())
         .then(data => {
           if (data.success) {
             document.getElementById("message").innerText = "تم التسجيل بنجاح!";
-            setTimeout(() => showLogin(), 1500);
+            setTimeout(() => loginTab.click(), 1500);
           } else if (data.reason === "duplicate") {
-            document.getElementById("message").innerText = "البريد الإلكتروني مسجل مسبقاً.";
+            document.getElementById("message").innerText = "البريد الإلكتروني مسجل مسبقًا.";
           } else {
-            document.getElementById("message").innerText = "حدث خطأ، حاول مجددًا.";
+            document.getElementById("message").innerText = "حدث خطأ أثناء التسجيل.";
           }
         });
-    }
+    });
 
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
 
-      fetch(`${scriptURL}?action=getUser&email=${email}&password=${password}`)
+      fetch(`${scriptURL}?action=getUser&email=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`)
         .then(res => res.json())
         .then(data => {
           if (data.success) {
             localStorage.setItem("userEmail", email);
             localStorage.setItem("referralLink", data.referral_link);
             localStorage.setItem("salary", data.salary);
-            window.location.href = "home.html"; // بعد الدخول ينتقل لصفحة العروض
+            window.location.href = "home.html";
           } else {
-            document.getElementById("message").innerText = "البيانات غير صحيحة.";
+            document.getElementById("loginWarning").classList.remove("hidden");
           }
         });
-    }
+    });
   </script>
 </body>
 </html>
