@@ -10,7 +10,8 @@
       margin: 0;
       padding: 0;
       direction: rtl;
-      background: #f0f0f0;
+      background-color: #1e3d58; /* اللون الأزرق */
+      color: white;
     }
 
     header {
@@ -41,12 +42,13 @@
     }
 
     h2 {
-      color: #333;
+      color: #fff;
       margin-bottom: 20px;
     }
 
     .info {
       background: white;
+      color: #333;
       padding: 20px;
       margin: 20px auto;
       max-width: 90%;
@@ -77,6 +79,36 @@
       font-weight: bold;
     }
 
+    table {
+      margin: 30px auto;
+      width: 80%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .reward-message {
+      font-size: 18px;
+      color: #fff;
+      background-color: #ff9800;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
     @media (min-width: 600px) {
       .info {
         max-width: 500px;
@@ -96,15 +128,38 @@
     </div>
     <button onclick="copyReferral()">نسخ الرابط</button>
     <p id="copied"></p>
+
+    <div class="reward-message">
+      <p>كل شخص يسجل باستخدام رابطك ويحصل على مكافأة عند الإيداع لفتح باقة مجانية إضافية.</p>
+    </div>
+
+    <!-- جدول يوضح عدد الأشخاص الذين سجلوا من رابطك -->
+    <table>
+      <thead>
+        <tr>
+          <th>عدد الأشخاص المسجلين</th>
+          <th>المكافأة المتاحة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="registered-count">0</td>
+          <td>باقة إضافية مجانية عند الإيداع</td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 
   <script>
     const referral = localStorage.getItem("referralLink");
+    const registeredCount = localStorage.getItem("registeredCount") || 0;
+
     if (!referral) {
       alert("يجب تسجيل الدخول أولاً");
       window.location.href = "index.html";
     } else {
       document.getElementById("referral").innerText = referral;
+      document.getElementById("registered-count").innerText = registeredCount;
     }
 
     function copyReferral() {
