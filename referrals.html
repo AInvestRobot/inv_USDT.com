@@ -2,37 +2,26 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>صفحة الإحالات</title>
-  <script>
-    window.onload = function() {
-      const userEmail = localStorage.getItem("userEmail");
-
-      if (userEmail) {
-        // جلب بيانات الإحالة من Google Sheets عبر API
-        fetch(`https://script.google.com/macros/s/AKfycbzGjDwr6uQKd9Bh1Rbb4iE1fI32pphws3uwWNf46xt6qegGj8Doq6O9udYQo392ToIR/exec?email=${userEmail}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.referralCode) {
-              document.getElementById("referral-link").textContent = `رابط إحالتك: https://example.com/signup?ref=${data.referralCode}`;
-              document.getElementById("salary").textContent = `راتبك المميز: ${data.salary}`;
-            } else {
-              document.getElementById("message").textContent = "لم يتم العثور على بياناتك.";
-            }
-          })
-          .catch(error => {
-            console.error("Error fetching referral data:", error);
-          });
-      } else {
-        document.getElementById("message").textContent = "لم تقم بتسجيل الدخول بعد.";
-      }
-    };
-  </script>
 </head>
 <body>
-  <h1>صفحة الإحالات</h1>
-  <p id="message">جاري التحميل...</p>
-  <p id="referral-link"></p>
-  <p id="salary"></p>
+  <h2>رابط الإحالة الخاص بك:</h2>
+  <p id="referralLink">جاري التحميل...</p>
+
+  <h2>راتبك المميز:</h2>
+  <p id="salary">جاري التحميل...</p>
+
+  <script>
+    const link = localStorage.getItem("referral_link");
+    const salary = localStorage.getItem("salary");
+
+    if (link && salary) {
+      document.getElementById("referralLink").innerText = link;
+      document.getElementById("salary").innerText = salary + " دولار";
+    } else {
+      document.getElementById("referralLink").innerText = "لم يتم تسجيل الدخول";
+      document.getElementById("salary").innerText = "غير متوفر";
+    }
+  </script>
 </body>
 </html>
