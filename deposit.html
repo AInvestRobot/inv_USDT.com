@@ -1,64 +1,89 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تأكيد الإيداع</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <title>إيداع USDT</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(160deg, #0a0a23, #1c1c3b, #2a2a50);
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .container {
+      background-color: rgba(25, 25, 50, 0.85);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 25px rgba(0, 255, 150, 0.3);
+    }
 
-        h1 {
-            text-align: center;
-        }
+    .usdt-logo {
+      width: 100px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 10px #00ffcc);
+    }
 
-        .plan-info {
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    h1 {
+      font-size: 26px;
+      color: #00ffcc;
+      margin-bottom: 10px;
+    }
 
-        .plan-info h2 {
-            color: #333;
-        }
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
 
-        .plan-info p {
-            color: #555;
-        }
+    .wallet-box {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      word-break: break-all;
+      color: #0f0;
+      border: 1px solid #0f0;
+    }
 
-        .wallet-address {
-            background-color: #e0e0e0;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-        }
+    .btn {
+      display: inline-block;
+      margin: 15px 10px 0;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: bold;
+    }
 
-        .back-button {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 16px;
-        }
+    .copy-button {
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
 
-        .back-button a {
-            text-decoration: none;
-            color: #28a745;
-        }
+    .copy-button:hover {
+      background-color: #00e6b8;
+    }
 
-        /* ✅ كود شكل أيقونة تيليجرام */
+    .go-button {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .go-button:hover {
+      background-color: #0056b3;
+    }
+    /* ✅ كود شكل أيقونة تيليجرام */
         .telegram-icon {
             position: fixed;
             top: 10px;
@@ -75,59 +100,34 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
-
-        .telegram-icon img:hover {
+        
+         .telegram-icon img:hover {
             transform: scale(1.1);
         }
-    </style>
+  </style>
 </head>
 <body>
-
-    <!-- ✅ زر تيليجرام في الأعلى -->
-    <a href="https://t.me/Abuite_HN" target="_blank" class="telegram-icon">
+ <a href="https://t.me/Abuite_HN" target="_blank" class="telegram-icon">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
     </a>
+  <div class="container">
+    <img class="usdt-logo" src="usdt.png.png" alt="USDT Logo">
+    <h1>الإداع لفتح الباقة المختارة</h1>
+     <p>trc 20 العنوان الذي يجب إرسال الأموال إليه: </p>
 
-    <!-- ✅ باقي الصفحة -->
-    <div class="container">
-        <h1> اودع لفتح الباقة </h1>
+   <pr>
+    <div class="wallet-box" id="walletAddress">T123abc456yourUSDTwallet789xyz</div>
+    <button class="btn copy-button" onclick="copyWallet()">نسخ العنوان</button>
+  </div>
 
-        <div class="plan-info">
-            <h2>الرجاء إرسال المبلغ التالي إلى العنوان المناسب</h2>
-            <p>المبلغ الذي تم إيداعه: <span id="deposit-amount"></span></p>
-            <p>trc 20 العنوان الذي يجب إرسال الأموال إليه: </p>
+  <script>
+    function copyWallet() {
+      const wallet = document.getElementById("walletAddress").textContent;
+      navigator.clipboard.writeText(wallet).then(() => {
+        alert("تم نسخ عنوان المحفظة!");
+      });
+    }
+  </script>
 
-            <div class="TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj" id=TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj"">
-                <!-- سيتم استبدال هذا بالعنوان بناءً على المبلغ -->
-            </div>
-        </div>
-
-        <div class="back-button">
-            <a href="home.html">الرجوع إلى الصفحة الرئيسية</a>
-        </div>
-    </div>
-
-    <script>
-        // الحصول على المبلغ من الـ URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const amount = urlParams.get('amount');
-
-        // عناوين المحفظة بناءً على المبلغ
-        const walletAddresses = {
-            1: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj",
-            10: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj",
-            20: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj",
-            100: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj",
-            150: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj",
-            300: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj",
-            500: "TYDaTFCPz76HUPo3R3JTRqoeiZ7Xpah9Jj"
-        };
-
-        // عرض المبلغ والعنوان
-        if (amount && walletAddresses[amount]) {
-            document.getElementById('deposit-amount').textContent = `${amount} دولار`;
-            document.getElementById('wallet-address').textContent = walletAddresses[amount];
-        }
-    </script>
 </body>
 </html>
