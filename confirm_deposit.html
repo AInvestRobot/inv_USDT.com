@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -19,19 +20,24 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
         }
+
         .plan-info {
             margin-bottom: 20px;
             text-align: center;
         }
+
         .plan-info h2 {
             color: #333;
         }
+
         .plan-info p {
             color: #555;
         }
+
         .wallet-address {
             background-color: #e0e0e0;
             padding: 10px;
@@ -39,19 +45,50 @@
             font-family: 'Courier New', monospace;
             text-align: center;
         }
+
         .back-button {
             display: block;
             text-align: center;
             margin-top: 20px;
             font-size: 16px;
         }
+
         .back-button a {
             text-decoration: none;
             color: #28a745;
         }
+
+        /* ✅ كود شكل أيقونة تيليجرام */
+        .telegram-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px; /* ضع left: 10px إذا كنت تريدها في اليسار */
+            width: 40px;
+            height: 40px;
+            z-index: 9999;
+        }
+
+        .telegram-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .telegram-icon img:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+
+    <!-- ✅ زر تيليجرام في الأعلى -->
+    <a href="https://t.me/Abuite_HN" target="_blank" class="telegram-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+    </a>
+
+    <!-- ✅ باقي الصفحة -->
     <div class="container">
         <h1> اودع لفتح الباقة </h1>
 
@@ -77,17 +114,17 @@
 
         // عناوين المحفظة بناءً على المبلغ
         const walletAddresses = {
-            1: "TAddress1_1abcd234567890abcdef12345", // 1 دولار
-            10: "TAddress2_2abcd234567890abcdef12345", // 10 دولار
-            20: "TAddress3_3abcd234567890abcdef12345", // 20 دولار
-            50: "TAddress4_4abcd234567890abcdef12345", // 50 دولار
-            100: "TAddress5_5abcd234567890abcdef12345", // 100 دولار
-            150: "TAddress6_6abcd234567890abcdef12345", // 150 دولار
-            300: "TAddress7_7abcd234567890abcdef12345", // 300 دولار
-            500: "TAddress8_8abcd234567890abcdef12345"  // 500 دولار
+            1: "TAddress1_1abcd234567890abcdef12345",
+            10: "TAddress2_2abcd234567890abcdef12345",
+            20: "TAddress3_3abcd234567890abcdef12345",
+            50: "TAddress4_4abcd234567890abcdef12345",
+            100: "TAddress5_5abcd234567890abcdef12345",
+            150: "TAddress6_6abcd234567890abcdef12345",
+            300: "TAddress7_7abcd234567890abcdef12345",
+            500: "TAddress8_8abcd234567890abcdef12345"
         };
 
-        // عرض المبلغ والعنوان المحفظة بناءً على المبلغ المدخل
+        // عرض المبلغ والعنوان
         if (amount && walletAddresses[amount]) {
             document.getElementById('deposit-amount').textContent = `${amount} دولار`;
             document.getElementById('wallet-address').textContent = walletAddresses[amount];
