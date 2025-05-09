@@ -56,9 +56,34 @@
             font-size: 14px;
             margin-top: 10px;
         }
+        /* ✅ كود شكل أيقونة تيليجرام */
+        .telegram-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px; /* ضع left: 10px إذا كنت تريدها في اليسار */
+            width: 40px;
+            height: 40px;
+            z-index: 9999;
+        }
+
+        .telegram-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .telegram-icon img:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+    <!-- ✅ زر تيليجرام في الأعلى -->
+    <a href="https://t.me/اسم_مستخدمك" target="_blank" class="telegram-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+    </a>
     <div class="container">
         <!-- صورة في الأعلى -->
         <div class="image"> 
