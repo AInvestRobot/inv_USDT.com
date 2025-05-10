@@ -147,9 +147,17 @@ body {
     transform: scale(1.05);
     box-shadow: 0 0 12px #4caf50;
 }
+footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* مسافة بين الأزرار */
+    justify-content: center;
+}
+
 footer nav button {
-    width: 100%;
-    padding: 2px;
+    width: 30%; /* تقريبا ثلث */
+    min-width: 100px; /* اختياري: لمنع الأزرار من أن تصبح صغيرة جداً */
+    padding: 10px;
     background: #64b5f6;
     color: #fff;
     border: none;
@@ -158,6 +166,7 @@ footer nav button {
     font-size: 15px;
     font-weight: bold;
     transition: all 0.2s ease;
+    box-sizing: border-box; /* مهم لتفادي مشاكل في العرض */
 }
 
 footer nav button:hover {
