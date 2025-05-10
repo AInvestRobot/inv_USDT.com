@@ -5,138 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>استثمار USDT</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7fc;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #555;
-        }
-        .container {
-            max-width: 420px;
-            width: 100%;
-            margin: auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .container:hover {
-            transform: translateY(-5px);
-        }
-        .top-bar {
-            background: #28a745;
-            color: white;
-            padding: 12px;
-            border-radius: 12px 12px 0 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .logo-container h1 {
-            margin-bottom: 20px;
-            color: #2e7d32;
-            font-size: 22px;
-        }
-        .logo-container img {
-            width: 80%; /* تم تكبير الصورة */
-            height: auto;
-            margin-top: 15px;
-            border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .rating {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #f39c12;
-        }
-        .language-select {
-            background: #007bff;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-        .language-select:hover {
-            background: #0056b3;
-        }
-        .actions button {
-            width: 48%;
-            padding: 12px;
-            background: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            margin: 8px 0;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .actions button:hover {
-            background: #218838;
-            transform: scale(1.05);
-        }
-        footer nav button {
-            width: 19%;
-            padding: 12px;
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            display: inline-block;
-            margin: 6px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        footer nav button:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-        }
-        select {
-            padding: 8px;
-            margin-top: 20px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: #f9f9f9;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        select:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-         /* ✅ كود شكل أيقونة تيليجرام */
-        .telegram-icon {
-            position: fixed;
-            top: 10px;
-            right: 10px; /* ضع left: 10px إذا كنت تريدها في اليسار */
-            width: 40px;
-            height: 40px;
-            z-index: 9999;
-        }
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
 
-        .telegram-icon img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-         .telegram-icon img:hover {
-            transform: scale(1.1);
-        }
-    </style>
+    .container {
+    max-width: 510px;
+    width: 90%;
+    height: 856px; /* الطول الثابت، يمكنك تغييره حسب حاجتك */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    padding: 5px 25px;
+    border-radius: 50px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+    .container:hover {
+        transform: translateY(-1px);
+    }
+
+    .top-bar {
+        background: linear-gradient(90deg, #510fec, #2b5ea0);
+        color: rgb(255, 3, 3);
+        padding: 10px;
+        border-radius: 16px 16px 0 0;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .logo-container h1 {
+        margin-bottom: 20px;
+        color: #241f1f;
+        font-size: 30px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-container img {
+        width: 400px;
+        height: 180px;
+        margin: 50px auto;
+        border-radius: 90%;
+         border: 5px solid #fff;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    .rating {
+        margin-top: 3px;
+        font-size: 25px;
+        color: #ffeb3b;
+    }
+
+    .language-select {
+        background: #1e88e5;
+        color: white;
+        padding: 14px 22px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 17px;
+        border: none;
+        transition: 0.3s;
+    }
+
+    .language-select:hover {
+        background: #1565c0;
+    }
+
+    .actions button {
+        width: 48%;
+        padding: 14px;
+        background: #00c853;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        transition: 0.3s ease;
+    }
+
+    .actions button:hover {
+        background: #2e7d32;
+        transform: scale(1.05);
+    }
+
+    footer nav button {
+        width: 30%;
+        padding: 10px;
+        background: #7db1df;
+        color: rgb(236, 6, 6);
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        margin: 7px;
+        transition: 0.1s;
+        /* أضف هاتين السطرين 👇 */
+    font-size: 19px;      /* تكبير الخط */
+    font-weight: bold;    /* تخ粗ين الخط */
+    }
+
+    footer nav button:hover {
+        background: #0d47a1;
+        transform: scale(1.05);
+    }
+
+    select {
+        padding: 10px;
+        margin-top: 25px;
+        font-size: 16px;
+        border: 1px solid #7a7979;
+        border-radius: 8px;
+        background: rgba(129, 127, 127, 0.9);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #e43636;
+    }
+
+    .telegram-icon {
+        position: fixed;
+        top: 40px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        z-index: 9999;
+    }
+
+    .telegram-icon img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
+    }
+
+    .telegram-icon img:hover {
+        transform: scale(1.1);
+    }
+</style>
 </head>
 <body>
       <!-- ✅ زر تيليجرام في الأعلى -->
@@ -146,7 +168,7 @@
     <div class="container">
         <header>
             <div class="top-bar">
-                <p id="top-bar-text">عائلتها، إذا ساعدتنا في إكمال الطلبات الـ...</p>
+                <p id="top-bar-text">إستثمر اموالك بأمان                   {Aİ NVEST ROBOT}</p>
                 <select id="language-selector" onchange="changeLanguage()">
                     <option value="ar">عربي</option>
                     <option value="en">English</option>
@@ -156,7 +178,7 @@
                 </select>
             </div>
             <div class="logo-container">
-                <h1 id="main-title">استثمر أموالك & وحصل على عاىد يومي</h1>
+                <h1 id="main-title">استثمر أموالك وحصل على عاىد يومي</h1>
                 <img src="https://www.aljazeera.net/wp-content/uploads/2022/03/shutterstock_1879675894.jpg?resize=770,513&quality=80" alt="شعار الموقع">
             </div>
             <div class="rating" id="rating">⭐⭐⭐⭐⭐ 5.0</div>
