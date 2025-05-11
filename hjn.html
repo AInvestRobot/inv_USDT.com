@@ -61,23 +61,26 @@
       margin-top: 30px;
     }
 
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 50px;
-      padding: 20px;
-      border-bottom: 5px solid #525151;
-    }
+     .info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* كان 12px */
+  padding: 20px;       /* كان 10px */
+  border-bottom: 1px solid #eee;
+  font-size: 100px;     /* أضف هذا لجعل النص أكبر */
+}
 
-    .info-item span:first-child {
-      color: #57606f;
-      font-weight: bold;
-    }
+.info-item span:first-child {
+  color: #34495e;
+  font-weight: bold;
+  font-size: 35px;     /* أضف هذا لجعل العنوان أو التسمية أكبر */
+}
 
-    .info-item span:last-child {
-      color: #2f3542;
-    }
-
+.info-item span:last-child {
+  color: #2f3542;
+  font-weight: bold;   /* أضف هذا لجعل البيانات بارزة */
+  font-size: 31px;     /* أضف هذا لجعل البيانات أكبر من التسمية قليلاً */
+}
     .logout-btn {
       margin-top: 30px;
       background-color: #ff4757;
