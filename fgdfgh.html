@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Invest Robot</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+    }
+    .header {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .language-selector {
+      position: relative;
+    }
+    .language-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      color: #333;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      min-width: 120px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    .language-dropdown div {
+      padding: 10px;
+      cursor: pointer;
+    }
+    .language-dropdown div:hover {
+      background-color: #f0f0f0;
+    }
+    .timer-section {
+      background-color: #000;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background-color: #007bff;
+      color: white;
+      padding: 20px 0;
+    }
+    .stat p {
+      margin: 0;
+      font-size: 14px;
+    }
+    .stat h2 {
+      margin-top: 5px;
+      font-size: 24px;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: white;
+      margin-top: 20px;
+    }
+    .tab {
+      padding: 12px 30px;
+      border: none;
+      background: white;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: #007bff;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .tab.active {
+      border-bottom: 3px solid #007bff;
+    }
+    .content {
+      padding: 30px;
+      text-align: center;
+      font-size: 16px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">AI Invest Robot</div>
+    <div class="language-selector">
+      <button class="language-btn" onclick="toggleDropdown()" id="languageBtn">Français ▾</button>
+      <div class="language-dropdown" id="langDropdown">
+        <div onclick="changeLanguage('fr')">Français</div>
+        <div onclick="changeLanguage('en')">English</div>
+        <div onclick="changeLanguage('ar')">العربية</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timer-section">
+    ⏰ <span data-i18n="reset">Réinitialisation de la tâche</span> – <span id="countdown"></span>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <p data-i18n="allTasks">Toutes les tâches pour aujourd'hui</p>
+      <h2>0</h2>
+    </div>
+    <div class="stat">
+      <p data-i18n="remainingTasks">Les tâches restantes d'aujourd'hui</p>
+      <h2>0</h2>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showContent('encours')" id="tab1" data-i18n="inProgress">En cours</button>
+    <button class="tab" onclick="showContent('complete')" id="tab2" data-i18n="completed">Complété</button>
+  </div>
+
+  <div class="content" id="tabContent">Pas de données</div>
+
+  <script>
+    const translations = {
+      fr: {
+        reset: "Réinitialisation de la tâche",
+        allTasks: "Toutes les tâches pour aujourd'hui",
+        remainingTasks: "Les tâches restantes d'aujourd'hui",
+        inProgress: "En cours",
+        completed: "Complété",
+        noData: "Pas de données"
+      },
+      en: {
+        reset: "Task reset",
+        allTasks: "All tasks for today",
+        remainingTasks: "Remaining tasks today",
+        inProgress: "In progress",
+        completed: "Completed",
+        noData: "No data"
+      },
+      ar: {
+        reset: "إعادة تعيين المهمة",
+        allTasks: "جميع المهام لليوم",
+        remainingTasks: "المهام المتبقية لليوم",
+        inProgress: "قيد التنفيذ",
+        completed: "مكتمل",
+        noData: "لا توجد بيانات"
+      }
+    };
+
+    let currentLang = "fr";
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      const texts = document.querySelectorAll('[data-i18n]');
+      texts.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = translations[lang][key];
+      });
+      // تحديث الزر العلوي
+      document.getElementById("languageBtn").innerHTML =
+        translations[lang]["inProgress"] === "قيد التنفيذ" ? "العربية ▾" :
+        (lang === "en" ? "English ▾" : "Français ▾");
+
+      // تحديث محتوى التبويب المفتوح
+      const activeTab = document.querySelector('.tab.active').id;
+      showContent(activeTab === 'tab1' ? 'encours' : 'complete');
+      
+      document.getElementById("langDropdown").style.display = "none";
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('langDropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showContent(tab) {
+      const content = document.getElementById('tabContent');
+      document.getElementById("tab1").classList.remove("active");
+      document.getElementById("tab2").classList.remove("active");
+
+      if (tab === 'encours') {
+        content.textContent = translations[currentLang]['noData'];
+        document.getElementById("tab1").classList.add("active");
+      } else {
+        content.textContent = translations[currentLang]['noData'];
+        document.getElementById("tab2").classList.add("active");
+      }
+    }
+
+    function startCountdown() {
+      let hours = 19, minutes = 47, seconds = 42;
+      const countdown = document.getElementById('countdown');
+
+      setInterval(() => {
+        seconds--;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+        }
+        if (minutes < 0) {
+          minutes = 59;
+          hours--;
+        }
+
+        countdown.textContent =
+          String(hours).padStart(2, '0') + ':' +
+          String(minutes).padStart(2, '0') + ':' +
+          String(seconds).padStart(2, '0');
+      }, 1000);
+    }
+
+    window.onclick = function(e) {
+      if (!e.target.matches('.language-btn')) {
+        document.getElementById('langDropdown').style.display = 'none';
+      }
+    }
+
+    startCountdown();
+  </script>
+
+</body>
+</html>
