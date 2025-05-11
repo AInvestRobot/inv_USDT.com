@@ -1,85 +1,195 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>سحب الأرباح</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سحب الأرباح | منصة استثمار</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-      color: #fff;
       margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
     }
 
-    .withdraw-container {
-      background-color: #1e2a38;
-      padding: 50px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      width: 95%;
-      max-width: 405px;
-    }
-
-    h2 {
+    header {
+      padding: 20px;
+      background-color: #121e2b;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       text-align: center;
-      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
       color: #00ffcc;
     }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background-color: #1c2b38;
+      padding: 35px 25px;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(0,255,204,0.05);
+      animation: fadeIn 1s ease;
     }
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 15px;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .balance {
+      text-align: center;
+      margin-bottom: 30px;
+      background: #0f1b24;
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #00cc99;
+    }
+
+    .balance h3 {
+      margin: 0;
+      color: #ccc;
       font-size: 16px;
     }
 
-    input[type="submit"] {
-      background-color: #00cc99;
-      color: white;
+    .balance p {
+      margin: 10px 0 0;
+      font-size: 28px;
+      color: #00ffcc;
       font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
     }
 
-    input[type="submit"]:hover {
-      background-color: #009977;
+    form label {
+      margin-bottom: 6px;
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    form input[type="number"],
+    form input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #00cc99;
+      background-color: #10202d;
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    form input:focus {
+      border-color: #00ffcc;
+      outline: none;
+      background-color: #1a2f3e;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #00cc99, #00ffcc);
+      color: #000;
+      padding: 14px;
+      border: none;
+      width: 100%;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,255,204,0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,255,204,0.4);
+    }
+
+    .back {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #00cc99;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .alert {
+      display: none;
+      background-color: #ff4d4d;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .icon-box {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #00ffcc;
+    }
+
+    @media(max-width: 500px) {
+      .container {
+        margin: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="withdraw-container">
-    <h2>سحب الأرباح</h2>
 
-    <form id="withdrawForm">
-      <label for="amount">المبلغ المطلوب سحبه (دولار):</label>
-      <input type="number" id="amount" name="amount" min="1" required>
-      <label for="wallet">عنوان المحفظة:</label>
-      <input type="text" id="wallet" name="wallet" placeholder="أدخل عنوان محفضتك trc20 " required>
-      <input type="submit" value="طلب السحب">
-    </form>
-    <footer>
-      <button onclick="window.location.href='home.html'">⬅️  رجوع</button>
-  </footer>
+<header>
+  <h1><i class="fas fa-money-bill-wave"></i> سحب الأرباح</h1>
+</header>
+
+<div class="container">
+  <div class="icon-box">
+    <i class="fas fa-wallet"></i>
   </div>
 
-  <script>
-    document.getElementById('withdrawForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // يمنع إرسال النموذج الحقيقي
-      alert('المبلغ غير كافي!');
-    });
-  </script>
+  <div class="balance">
+    <h3>رصيدك القابل للسحب</h3>
+    <p>$0</p>
+  </div>
+
+  <form id="withdrawForm">
+    <label for="amount">المبلغ (دولار)</label>
+    <input type="number" id="amount" name="amount" min="1" placeholder="أدخل المبلغ" required>
+
+    <label for="wallet">عنوان المحفظة (TRC20)</label>
+    <input type="text" id="wallet" name="wallet" placeholder="TX8u...xxxx" required>
+
+    <input type="submit" class="btn" value="طلب السحب">
+    <div class="alert" id="alertBox">⚠️ الرصيد غير كافٍ</div>
+  </form>
+
+  <a href="home.html" class="back"><i class="fas fa-arrow-left"></i> العودة إلى الرئيسية</a>
+</div>
+
+<script>
+  document.getElementById('withdrawForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const amount = parseFloat(document.getElementById('amount').value);
+    const balance = 152; // مثال فقط
+
+    if (amount > balance) {
+      document.getElementById('alertBox').style.display = 'block';
+    } else {
+      document.getElementById('alertBox').style.display = 'none';
+      alert('رصيدك غير كافي إذهب لشحن رصيدك ‼️');
+    }
+  });
+</script>
+
 </body>
 </html>
